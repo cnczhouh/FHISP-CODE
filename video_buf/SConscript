@@ -1,0 +1,23 @@
+
+
+Import('rtconfig')
+import os
+from building import *
+
+Import('SDK_ROOT')
+
+#path_inc = [SDK_ROOT + '/extlib/inc']
+#path_inc = [SDK_ROOT + '/platform']
+#path_inc += [SDK_ROOT + '/drivers']
+
+cwd = GetCurrentDir()
+src = Glob('*.c')
+CPPPATH = [cwd]
+
+path_inc = [cwd + '/../inc']
+path_inc += [cwd + '/../inc/ctrl']
+
+group = DefineGroup('isp', src, depend = ['FH_USING_ISP'], LOCAL_CPPPATH = path_inc)
+
+
+Return('group')
